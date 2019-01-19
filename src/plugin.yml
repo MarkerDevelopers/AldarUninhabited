@@ -1,0 +1,7 @@
+name: AldarUninhabited
+main: com.ndy.AldarUninhabitedPlugin
+version: 1.0
+
+commands:
+  island:
+    aliases: [섬, 팜, 무인도]

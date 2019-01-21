@@ -9,7 +9,7 @@ import java.io.FileWriter;
 
 public class GsonUtil<T> {
 
-    private final String JSON_EXTENSTION = ".json";
+    private final String JSON_EXTENSION = ".json";
     private File jsonPathFolder;
     private Gson gson;
 
@@ -19,7 +19,7 @@ public class GsonUtil<T> {
     }
 
     public File getJsonPathFolder() { return jsonPathFolder; }
-    private File getJsonPath(String fileName) { return new File(getJsonPathFolder(), fileName + JSON_EXTENSTION); }
+    private File getJsonPath(String fileName) { return new File(getJsonPathFolder(), fileName + JSON_EXTENSION); }
 
     public void writeGson(String fileName, T obj) {
         try{

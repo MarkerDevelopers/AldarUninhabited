@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="aldaruninhabited-maven:jar">
+    <output-path>$USER_HOME$/Desktop/Developement/Java/Minecraft/1.12.2/plugins</output-path>
+    <root id="archive" name="aldaruninhabited-maven.jar">
+      <element id="module-output" name="aldaruninhabited-maven" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
+    </root>
+  </artifact>
+</component>

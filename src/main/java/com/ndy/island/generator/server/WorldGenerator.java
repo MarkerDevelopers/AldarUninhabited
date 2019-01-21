@@ -1,4 +1,4 @@
-package com.ndy.island.generator;
+package com.ndy.island.generator.server;
 
 import com.ndy.chunk.WaterChunkGenerator;
 import com.ndy.island.generator.abstraction.GenerateAble;

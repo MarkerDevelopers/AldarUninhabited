@@ -6,8 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="aldaruninhabited-maven" />
         <module name="aldaruninhabitedmaven" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aldaruninhabited-maven" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

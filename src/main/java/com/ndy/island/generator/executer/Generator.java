@@ -1,8 +1,6 @@
 package com.ndy.island.generator.executer;
 
-import com.ndy.AldarUninhabitedPlugin;
 import com.ndy.island.generator.abstraction.GenerateAble;
-import org.bukkit.Bukkit;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -10,8 +8,6 @@ import java.util.Queue;
 public class Generator {
 
     private Queue<GenerateAble> generateAbleQueue = new LinkedList<>();
-    private Queue<GenerateAble> generateWaitQueue = new LinkedList<>();
-    private long tick = 1;
     private boolean isExecute = false;
 
     public Generator() {}
@@ -20,11 +16,6 @@ public class Generator {
         if(generateAbleQueue.contains(generateAble)) return this;
 
         generateAbleQueue.add(generateAble);
-        return this;
-    }
-
-    public Generator setHandleTime(int time) {
-        this.tick = 20 * time;
         return this;
     }
 

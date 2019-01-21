@@ -24,15 +24,16 @@ public class IslandGenerator implements GenerateAble {
     @Override
     public boolean generate() {
         IslandOption option = IslandOptionFactory.getInstance().getOption();
+        String uuidStr = player.getUniqueId().toString();
         int next = option.getRange() + option.getDistance();
         Location location = option.getLastLocation().toLocation().clone();
         location.setY(option.getHeight());
         location.add(next, 0, next);
 
         option.setLastLocation(new LocationWrapper(location));
-        option.setLastIslandUUID(player.getUniqueId().toString());
+        option.setLastIslandUUID(uuidStr);
 
-        IslandData.getInstance().getDataManager().set(player.getUniqueId().toString(), player.getUniqueId().toString());
+        IslandData.getInstance().getDataManager().set(uuidStr, uuidStr);
 
         Island island = new Island(player, location);
         IslandStorage.getInstance().registerIsland(island);

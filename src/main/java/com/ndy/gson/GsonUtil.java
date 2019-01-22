@@ -35,8 +35,10 @@ public class GsonUtil<T> {
     public T parseObject(String fileName, Class<T> clazz) {
         try{
             BufferedReader reader = new BufferedReader(new FileReader(getJsonPath(fileName)));
+            T obj = gson.fromJson(reader, clazz);
+            reader.close();
 
-            return gson.fromJson(reader, clazz);
+            return obj;
         }catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -44,7 +46,7 @@ public class GsonUtil<T> {
     }
 
     public void delete(String fileName) {
-        getJsonPath(fileName).delete();
+        boolean success = getJsonPath(fileName).delete();
     }
 
     public boolean exists(String fileName) {

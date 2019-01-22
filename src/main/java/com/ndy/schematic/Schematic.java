@@ -1,7 +1,8 @@
 package com.ndy.schematic;
 
 import com.ndy.AldarUninhabitedPlugin;
-import com.sk89q.worldedit.CuboidClipboard; 
+import com.ndy.island.storage.IslandStorage;
+import com.sk89q.worldedit.CuboidClipboard;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.schematic.MCEditSchematicFormat;
 import org.bukkit.Bukkit;
@@ -44,7 +45,7 @@ public class Schematic {
                 for (y = 0; y < sizeY; y++) {
                     for (z = 0; z < sizeZ; z++) {
                         BaseBlock block = blocks[x][y][z];
-                        location = new Location(center.getWorld(),  x, center.getY() + y, (center.getZ()/2) + z);
+                        location = new Location(center.getWorld(),  center.getZ() + x, center.getY() + y, center.getZ() + z);
                         int typeId = block.getId();
 
                         if (typeId != 0 && typeId != Material.STATIONARY_WATER.getId()) {
@@ -56,6 +57,7 @@ public class Schematic {
             }
             location = new Location(location.getWorld(), location.getX() - (sizeX/2), location.getY(), location.getZ() - (sizeZ/2));
 
+            IslandStorage.getInstance().getIsland(player).setCenter(location);
             player.teleport(location);
             long end = System.currentTimeMillis();
             System.out.println("스케메틱 로드 소요시간 : " + (end - start)/1000.0 + " 초");

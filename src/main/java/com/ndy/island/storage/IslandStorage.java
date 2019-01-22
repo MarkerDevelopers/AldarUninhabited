@@ -16,6 +16,7 @@ public class IslandStorage {
     private static IslandStorage instance;
 
     private Map<String, Island> islandMap = new HashMap<>();
+    private Map<String, String> uuidMap = new HashMap<>();
 
     private IslandStorage() { }
 
@@ -33,6 +34,12 @@ public class IslandStorage {
         /* Island 생성시에만 실행됨 */
         save(island);
         islandMap.put(island.getOwnerUuid(), island);
+        uuidMap.put(island.getOwnerUuid(), island.getOwnerUuid());
+    }
+
+    public void unregisterIsland(Island island) {
+        islandMap.remove(island.getOwnerUuid());
+        uuidMap.remove(island.getOwnerUuid());
     }
 
     public boolean isCreated(Player player) {
@@ -50,27 +57,59 @@ public class IslandStorage {
     public Island getIsland(Player player) {
         String uuidStr = player.getUniqueId().toString();
         boolean contains = IslandData.getInstance().getDataManager().contains(uuidStr);
+        if(!islandMap.containsKey(uuidStr)) {
+            load(player);
+        }
 
         if(contains) {
-            String uuid = IslandData.getInstance().getDataManager().getString(uuidStr);
+            String uuid = null;
+            if(uuidMap.get(uuidStr) == null) {
+                uuid = IslandData.getInstance().getDataManager().getString(uuidStr);
+                uuidMap.put(uuidStr, uuid);
+            }
             Island island = islandMap.get(uuid);
 
-            if(island != null) return island;
+            if(island == null) load(uuid);
+
+            return island;
         }
 
         return null;
     }
 
-    public void load(Player player) {
+    /**
+     * @return isOwner
+     * */
+    public boolean load(Player player) {
         String uuidStr = player.getUniqueId().toString();
         Object fileName = IslandData.getInstance().getDataManager().get(uuidStr);
 
-        if(fileName != null && islandMap.get(fileName) != null) {
-            GsonUtil<Island> gsonUtil = new GsonUtil<>(getIslandFolder());
-            Island island = gsonUtil.parseObject((String) fileName, Island.class);
+        if(fileName != null && islandMap.get(fileName) == null) {
+            Island island = islandLoad(uuidStr);
 
-            if(island != null) islandMap.put((String) fileName, island);
+            if(island != null) {
+                islandMap.put((String) fileName, island);
+                return true;
+            }
         }
+        return false;
+    }
+
+    public void load(String ownerUUID) {
+        if(islandMap.get(ownerUUID) == null) {
+            Island island = islandLoad(ownerUUID);
+
+            if(island != null) {
+                islandMap.put(ownerUUID, island);
+            }
+        }
+    }
+
+    private Island islandLoad(String fileName) {
+        GsonUtil<Island> gsonUtil = new GsonUtil<>(getIslandFolder());
+        Island island = gsonUtil.parseObject(fileName, Island.class);
+
+        return island;
     }
 
 }

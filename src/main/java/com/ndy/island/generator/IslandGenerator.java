@@ -34,6 +34,7 @@ public class IslandGenerator implements GenerateAble {
         option.setLastIslandUUID(uuidStr);
 
         IslandData.getInstance().getDataManager().set(uuidStr, uuidStr);
+        IslandData.getInstance().save();
 
         Island island = new Island(player, location);
         IslandStorage.getInstance().registerIsland(island);

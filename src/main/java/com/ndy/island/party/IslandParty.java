@@ -47,4 +47,6 @@ public class IslandParty {
         }
     }
 
+    public int getPartyMemberSize() { return partyMemberList.size(); }
+
 }

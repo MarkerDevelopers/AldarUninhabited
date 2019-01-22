@@ -18,4 +18,6 @@ public class IslandData {
     }
 
     public DataManager getDataManager() { return dataManager; }
+
+    public void save() { DataManager.save(dataManager); }
 }

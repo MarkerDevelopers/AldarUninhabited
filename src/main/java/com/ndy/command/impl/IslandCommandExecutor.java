@@ -1,6 +1,7 @@
 package com.ndy.command.impl;
 
 import com.ndy.command.executor.IslandCreateCommand;
+import com.ndy.command.executor.IslandDeleteCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,9 @@ public class IslandCommandExecutor {
 
     static {
         instance = new IslandCommandExecutor();
+
         commandRamifyList.add(new IslandCreateCommand());
+        commandRamifyList.add(new IslandDeleteCommand());
     }
 
     private IslandCommandExecutor() {}

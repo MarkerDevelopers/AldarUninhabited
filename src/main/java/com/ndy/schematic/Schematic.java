@@ -20,27 +20,29 @@ public class Schematic {
     public static void loadSchematic(File file, Location center, Player player) {
         try {
             CuboidClipboard clipboard = MCEditSchematicFormat.getFormat(file).load(file);
-            BaseBlock[][][] baseBlocks = getBlocks(clipboard);
+            /*BaseBlock[][][] baseBlocks = getBlocks(clipboard);
             if(baseBlocks == null) {
                 System.out.println("[AldarUninhabited] BaseBlock[][][] is null");
                 return;
-            }
+            }*/
 
-            paste(center, baseBlocks, player);
+            paste(center, clipboard, player);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void paste(Location center, BaseBlock[][][] blocks, Player player) {
-        int sizeX = blocks.length;
-        int sizeY = blocks[0].length;
-        int sizeZ = blocks[0][0].length;
+    private static void paste(Location center,CuboidClipboard clipboard, Player player) {
+        BaseBlock[][][] blocks = getBlocks(clipboard);
 
-        Bukkit.getScheduler().runTaskLater(AldarUninhabitedPlugin.instance, () -> {
+        int sizeX = clipboard.getLength();
+        int sizeY = clipboard.getHeight();
+        int sizeZ = clipboard.getWidth();
+
+        Bukkit.getScheduler().runTaskLater(AldarUninhabitedPlugin.instance, () -> { // async
             long start = System.currentTimeMillis();
             int x = 0, y = 0, z = 0;
-            Location location = null;
+            Location location = null; //sync
             for (x = 0; x < sizeX; x++) {
                 for (y = 0; y < sizeY; y++) {
                     for (z = 0; z < sizeZ; z++) {
@@ -49,6 +51,7 @@ public class Schematic {
                         int typeId = block.getId();
 
                         if (typeId != 0 && typeId != Material.STATIONARY_WATER.getId()) {
+
                             location.getBlock().setType(Material.getMaterial(typeId));
                             location.getBlock().setData((byte) block.getData());
                         }

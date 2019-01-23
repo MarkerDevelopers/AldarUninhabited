@@ -17,13 +17,13 @@ public class IslandDenyCommand extends AbstractCommandRamify {
         IslandPartyInviteScheduler scheduler = IslandInviteSchedulerStorage.getScheduler(player);
 
         if(scheduler == null) {
-            player.sendMessage("&c당신은 받은 초대가 없습니다.");
+            setMessage("&c당신은 받은 초대가 없습니다.");
             return false;
         }
 
         scheduler.getInvite().accept(false);
         scheduler.cancelTask();
-        player.sendMessage("&c거절하였습니다.");
+        setMessage("&c거절하였습니다.");
         return false;
     }
 }

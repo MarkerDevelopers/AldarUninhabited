@@ -2,16 +2,16 @@ package com.ndy.island.generator;
 
 import com.ndy.gson.GsonUtil;
 import com.ndy.island.Island;
-import com.ndy.island.generator.abstraction.GenerateAble;
+import com.ndy.island.generator.abstraction.IGenerate;
 import com.ndy.island.option.IslandData;
 import com.ndy.island.storage.IslandStorage;
 import org.bukkit.entity.Player;
 
-public class IslandDeleteGenerator implements GenerateAble {
+public class IslandDeleter implements IGenerate {
 
     private Player player;
 
-    public IslandDeleteGenerator(Player player) {
+    public IslandDeleter(Player player) {
         this.player = player;
     }
 

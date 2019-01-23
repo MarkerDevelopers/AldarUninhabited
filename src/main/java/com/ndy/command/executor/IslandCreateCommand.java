@@ -17,7 +17,7 @@ public class IslandCreateCommand extends AbstractCommandRamify {
         Player player = (Player) objects[0];
 
         if(IslandStorage.getInstance().isCreated(player)) {
-            setMessage("§c이미 생성된 섬입니다.");
+            setMessage("§c이미 섬을 가지고 있습니다.");
             return false;
         }
 

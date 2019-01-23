@@ -1,13 +1,13 @@
 package com.ndy.island.generator;
 
 import com.ndy.island.Island;
-import com.ndy.island.generator.abstraction.GenerateAble;
+import com.ndy.island.generator.abstraction.IGenerate;
 import com.ndy.island.option.IslandData;
 import com.ndy.island.party.IslandParty;
 import com.ndy.island.party.invite.IslandPartyInvite;
 import org.bukkit.entity.Player;
 
-public class IslandInviteGenerator implements GenerateAble {
+public class IslandInviteGenerator implements IGenerate {
 
     private IslandPartyInvite invite;
 

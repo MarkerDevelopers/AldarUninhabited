@@ -1,5 +1,6 @@
 package com.ndy;
 
+import com.ndy.island.generator.server.ServerFunctionGenerator;
 import com.ndy.island.generator.server.ServerGenerator;
 import com.ndy.island.generator.server.WorldGenerator;
 import com.ndy.island.generator.executer.Generator;
@@ -17,7 +18,6 @@ public class AldarUninhabitedPlugin extends JavaPlugin implements IModuleInitial
 
     @Override
     public void onEnable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED  + "LOAD!@!!!!!@12!@!2!@!@!@!");
         PluginModuleManager.getManager().registerModule(this, this);
     }
 
@@ -37,7 +37,9 @@ public class AldarUninhabitedPlugin extends JavaPlugin implements IModuleInitial
     private void serverInitialize() {
         Generator generator = new Generator()
                 .addGenerateAble(new WorldGenerator())
-                .addGenerateAble(new ServerGenerator(getDataFolder()));
+                .addGenerateAble(new ServerGenerator(getDataFolder()))
+                .addGenerateAble(new ServerFunctionGenerator());
+
         generator.dispose();
     }
 }

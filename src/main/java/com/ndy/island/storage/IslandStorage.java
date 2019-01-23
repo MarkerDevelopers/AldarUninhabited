@@ -62,8 +62,8 @@ public class IslandStorage {
         }
 
         if(contains) {
-            String uuid = null;
-            if(uuidMap.get(uuidStr) == null) {
+            String uuid = uuidMap.get(uuidStr);
+            if(uuid == null) {
                 uuid = IslandData.getInstance().getDataManager().getString(uuidStr);
                 uuidMap.put(uuidStr, uuid);
             }

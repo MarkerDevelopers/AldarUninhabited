@@ -2,7 +2,7 @@ package com.ndy.command.executor;
 
 import com.ndy.command.impl.AbstractCommandRamify;
 import com.ndy.island.Island;
-import com.ndy.island.generator.IslandDeleteGenerator;
+import com.ndy.island.generator.IslandDeleter;
 import com.ndy.island.generator.executer.Generator;
 import com.ndy.island.storage.IslandStorage;
 import org.bukkit.entity.Player;
@@ -28,7 +28,7 @@ public class IslandDeleteCommand extends AbstractCommandRamify {
         }
 
         Generator generator = new Generator();
-        generator.addGenerateAble(new IslandDeleteGenerator(player));
+        generator.addGenerateAble(new IslandDeleter(player));
         generator.dispose();
 
         setMessage("§a섬을 삭제하였습니다.");

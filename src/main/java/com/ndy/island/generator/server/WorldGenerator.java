@@ -1,12 +1,12 @@
 package com.ndy.island.generator.server;
 
 import com.ndy.chunk.WaterChunkGenerator;
-import com.ndy.island.generator.abstraction.GenerateAble;
+import com.ndy.island.generator.abstraction.IGenerate;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
-public class WorldGenerator implements GenerateAble {
+public class WorldGenerator implements IGenerate {
 
     public WorldGenerator() {}
 

@@ -1,7 +1,7 @@
 package com.ndy.island.generator;
 
 import com.ndy.island.Island;
-import com.ndy.island.generator.abstraction.GenerateAble;
+import com.ndy.island.generator.abstraction.IGenerate;
 import com.ndy.island.option.IslandData;
 import com.ndy.island.option.IslandOption;
 import com.ndy.island.option.IslandOptionFactory;
@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 
-public class IslandGenerator implements GenerateAble {
+public class IslandGenerator implements IGenerate {
 
     private Player player;
 

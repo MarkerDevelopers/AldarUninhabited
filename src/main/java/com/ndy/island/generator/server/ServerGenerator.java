@@ -1,13 +1,11 @@
 package com.ndy.island.generator.server;
 
-import com.ndy.AldarUninhabitedPlugin;
-import com.ndy.command.IslandCommand;
-import com.ndy.island.generator.abstraction.GenerateAble;
+import com.ndy.island.generator.abstraction.IGenerate;
 import com.ndy.island.option.IslandOptionFactory;
 
 import java.io.File;
 
-public class ServerGenerator implements GenerateAble {
+public class ServerGenerator implements IGenerate {
 
     /** @description 서버 데이터 파일 Generator */
 
@@ -29,7 +27,6 @@ public class ServerGenerator implements GenerateAble {
 
     private void initializeDataFile() {
         IslandOptionFactory.getInstance().loadOption(dataFolder);
-
     }
 
     private void createFolder(File folder) {
@@ -40,8 +37,6 @@ public class ServerGenerator implements GenerateAble {
     public boolean generate() throws Exception {
         initializeFolders();
         initializeDataFile();
-
-        AldarUninhabitedPlugin.instance.getCommand("island").setExecutor(new IslandCommand());
 
         return true;
     }

@@ -1,7 +1,7 @@
 name: AldarUninhabited
 main: com.ndy.AldarUninhabitedPlugin
 version: 1.0
-depend: [WorldEdit, APluginModuleAPI]
+depend: [WorldEdit, APluginModuleAPI, AldarClimate]
 
 commands:
   island:

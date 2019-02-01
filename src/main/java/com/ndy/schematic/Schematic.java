@@ -17,54 +17,53 @@ public class Schematic {
 
     /* Climate Schematic */
 
-    public static void loadSchematic(File file, Location center, Player player) {
+    /**
+     * @return Island Center Location
+     * */
+    public static Location loadSchematic(File file, Location center, Player player) {
         try {
             CuboidClipboard clipboard = MCEditSchematicFormat.getFormat(file).load(file);
-            /*BaseBlock[][][] baseBlocks = getBlocks(clipboard);
-            if(baseBlocks == null) {
-                System.out.println("[AldarUninhabited] BaseBlock[][][] is null");
-                return;
-            }*/
-
-            paste(center, clipboard, player);
+            return paste(center, clipboard, player);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    private static void paste(Location center,CuboidClipboard clipboard, Player player) {
+    /**
+     * @return Island Center Location
+     * */
+    private static Location paste(Location center,CuboidClipboard clipboard, Player player) {
         BaseBlock[][][] blocks = getBlocks(clipboard);
 
         int sizeX = clipboard.getLength();
         int sizeY = clipboard.getHeight();
         int sizeZ = clipboard.getWidth();
 
-        Bukkit.getScheduler().runTaskLater(AldarUninhabitedPlugin.instance, () -> { // async
-            long start = System.currentTimeMillis();
-            int x = 0, y = 0, z = 0;
-            Location location = null; //sync
-            for (x = 0; x < sizeX; x++) {
-                for (y = 0; y < sizeY; y++) {
-                    for (z = 0; z < sizeZ; z++) {
-                        BaseBlock block = blocks[x][y][z];
-                        location = new Location(center.getWorld(),  center.getZ() + x, center.getY() + y, center.getZ() + z);
-                        int typeId = block.getId();
+        long start = System.currentTimeMillis();
+        int x = 0, y = 0, z = 0;
+        Location location = null; //sync
+        for (x = 0; x < sizeX; x++) {
+            for (y = 0; y < sizeY; y++) {
+                for (z = 0; z < sizeZ; z++) {
+                    BaseBlock block = blocks[x][y][z];
+                    location = new Location(center.getWorld(),  center.getZ() + x, center.getY() + y, center.getZ() + z);
+                    int typeId = block.getId();
 
-                        if (typeId != 0 && typeId != Material.STATIONARY_WATER.getId()) {
-
-                            location.getBlock().setType(Material.getMaterial(typeId));
-                            location.getBlock().setData((byte) block.getData());
-                        }
+                    if (typeId != 0 && typeId != Material.STATIONARY_WATER.getId()) {
+                        location.getBlock().setType(Material.getMaterial(typeId));
+                        location.getBlock().setData((byte) block.getData());
                     }
                 }
             }
-            location = new Location(location.getWorld(), location.getX() - (sizeX/2), location.getY(), location.getZ() - (sizeZ/2));
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("스케메틱 로드 소요시간 : " + (end - start)/1000.0 + " 초");
 
-            IslandStorage.getInstance().getIsland(player).setCenter(location);
-            player.teleport(location);
-            long end = System.currentTimeMillis();
-            System.out.println("스케메틱 로드 소요시간 : " + (end - start)/1000.0 + " 초");
-        }, 1L);
+        location = new Location(location.getWorld(), location.getX() - (sizeX/2.0F), location.getY(), location.getZ() - (sizeZ/2.0F));
+        player.teleport(location);
+
+        return location;
     }
 
     private static BaseBlock[][][] getBlocks(CuboidClipboard clipboard) {

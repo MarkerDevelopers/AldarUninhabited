@@ -1,5 +1,6 @@
 package com.ndy.island;
 
+import com.ndy.climate.abstraction.AbstractClimate;
 import com.ndy.island.option.IslandOption;
 import com.ndy.island.option.IslandOptionFactory;
 import com.ndy.island.party.IslandParty;
@@ -12,14 +13,17 @@ public class Island {
     private String ownerUuid;
     private LocationWrapper center;
     private IslandParty party;
+    private String climateName;
 
-    public Island(Player player, Location center) {
+    public Island(Player player, Location center, AbstractClimate climate) {
         this.ownerUuid = player.getUniqueId().toString();
         this.center = new LocationWrapper(center.getWorld(), center.getX(), center.getY(), center.getZ());
+        this.climateName = climate.getClimateName();
         this.party = new IslandParty();
         this.party.joinPartyMember(player);
     }
 
+    public String getClimateName() { return climateName; }
     public String getOwnerUuid() { return ownerUuid; }
     public LocationWrapper getCenter() { return center; }
     public IslandParty getParty() { return party; }

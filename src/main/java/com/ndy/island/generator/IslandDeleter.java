@@ -28,7 +28,7 @@ public class IslandDeleter implements IGenerate {
 
         IslandStorage.getInstance().unregisterIsland(island);
 
-        player.performCommand("스폰");
+        player.performCommand("spawn");
         return true;
     }
 

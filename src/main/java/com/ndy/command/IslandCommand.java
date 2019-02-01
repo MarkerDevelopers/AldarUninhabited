@@ -2,6 +2,7 @@ package com.ndy.command;
 
 import com.ndy.command.impl.AbstractCommandRamify;
 import com.ndy.command.impl.IslandCommandExecutor;
+import com.ndy.gui.IslandMenu;
 import com.ndy.island.Island;
 import com.ndy.island.storage.IslandStorage;
 import org.bukkit.command.Command;
@@ -23,7 +24,8 @@ public class IslandCommand implements CommandExecutor {
 
                 Island island = IslandStorage.getInstance().getIsland(player);
                 player.teleport(island.getCenter().toLocation());
-                //GUI OPENED
+
+                IslandMenu.open(player, island);
                 return false;
             }
 

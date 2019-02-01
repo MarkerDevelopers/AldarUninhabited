@@ -77,6 +77,14 @@ public class IslandStorage {
         return null;
     }
 
+    public Island getWithinIsland(Player player) {
+        for(Island island : islandMap.values()) {
+            if(island.withInIsland(player)) return island;
+        }
+
+        return null;
+    }
+
     /**
      * @return isOwner
      * */

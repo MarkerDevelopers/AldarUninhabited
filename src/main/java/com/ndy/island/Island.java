@@ -8,12 +8,16 @@ import com.ndy.util.LocationWrapper;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Island {
 
     private String ownerUuid;
     private LocationWrapper center;
     private IslandParty party;
     private String climateName;
+    private List<Long> scarecrowIdList = new ArrayList<>(); //Scarecrow id list
 
     public Island(Player player, Location center, AbstractClimate climate) {
         this.ownerUuid = player.getUniqueId().toString();
@@ -42,5 +46,13 @@ public class Island {
         int locX = location.getBlockX(), locZ = location.getBlockZ();
 
         return center.getWolrd().equals(location.getWorld()) && (subX <= locX && addX >= locX) && (subZ <= locZ && addZ >= locZ);
+    }
+
+    /**
+     * @param id scareCrow id
+     * */
+    public void addScareCrow(long id) {
+        if(!scarecrowIdList.contains(id))
+            scarecrowIdList.add(id);
     }
 }

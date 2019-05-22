@@ -9,8 +9,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sk89q.worldedit:worldedit-bukkit:6.1.4-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="ScareCrow" level="project" />
     <orderEntry type="library" name="PluginModuleAP1-12" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
@@ -31,5 +34,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.thoughtworks.paranamer:paranamer:2.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sk89q.lib:jlibnoise:1.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sk89q:jchronic:0.2.4a" level="project" />
+    <orderEntry type="library" name="AldarClimate" level="project" />
   </component>
 </module>

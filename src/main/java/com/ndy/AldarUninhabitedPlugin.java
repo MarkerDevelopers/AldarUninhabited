@@ -8,8 +8,6 @@ import com.ndy.island.option.IslandOptionFactory;
 import com.ndy.module.PluginModuleManager;
 import com.ndy.module.impl.IModuleInitializer;
 import com.ndy.module.type.ModuleLoadResult;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AldarUninhabitedPlugin extends JavaPlugin implements IModuleInitializer {
@@ -22,7 +20,7 @@ public class AldarUninhabitedPlugin extends JavaPlugin implements IModuleInitial
     }
 
     @Override
-    public ModuleLoadResult initialize() throws Exception {
+    public ModuleLoadResult initialize() {
         instance = this;
         serverInitialize();
 
